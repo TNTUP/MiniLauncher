@@ -24,7 +24,7 @@
  * SOFTWARE.
  */
 
-package me.minidigger.minecraftlauncer.renderer.animation;
+package me.minidigger.minecraftlauncher.renderer.animation;
 
 import javafx.animation.AnimationTimer;
 

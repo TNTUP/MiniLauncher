@@ -39,9 +39,9 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import me.minidigger.minecraftlauncer.renderer.SkinCanvas;
-import me.minidigger.minecraftlauncer.renderer.SkinCanvasMouseHandler;
-import me.minidigger.minecraftlauncer.renderer.model.SkinCube;
+import me.minidigger.minecraftlauncher.renderer.SkinCanvas;
+import me.minidigger.minecraftlauncher.renderer.SkinCanvasMouseHandler;
+import me.minidigger.minecraftlauncher.renderer.model.SkinCube;
 import me.minidigger.minecraftlauncher.launcher.tasks.DiscordIntegrationTask;
 
 /**

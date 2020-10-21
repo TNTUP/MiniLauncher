@@ -24,7 +24,7 @@
  * SOFTWARE.
  */
 
-package me.minidigger.minecraftlauncer.renderer.model;
+package me.minidigger.minecraftlauncher.renderer.model;
 
 import javafx.scene.Group;
 import javafx.scene.image.Image;

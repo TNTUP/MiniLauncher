@@ -24,15 +24,15 @@
  * SOFTWARE.
  */
 
-package me.minidigger.minecraftlauncer.renderer;
+package me.minidigger.minecraftlauncher.renderer;
 
 import javafx.scene.image.Image;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
-import me.minidigger.minecraftlauncer.renderer.model.SkinCube;
-import me.minidigger.minecraftlauncer.renderer.model.SkinGroup;
-import me.minidigger.minecraftlauncer.renderer.model.SkinMultipleCubes;
+import me.minidigger.minecraftlauncher.renderer.model.SkinCube;
+import me.minidigger.minecraftlauncher.renderer.model.SkinGroup;
+import me.minidigger.minecraftlauncher.renderer.model.SkinMultipleCubes;
 
 public class SkinData {
 

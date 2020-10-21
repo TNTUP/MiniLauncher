@@ -24,40 +24,45 @@
  * SOFTWARE.
  */
 
-package me.minidigger.minecraftlauncher.launcher.gui;
+package me.minidigger.minecraftlauncher.renderer;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
 
-import javafx.fxml.FXML;
-import javafx.scene.layout.Pane;
-import me.minidigger.minecraftlauncher.renderer.SkinCanvas;
-import me.minidigger.minecraftlauncher.renderer.animation.animations.RunningAnimation;
-import me.minidigger.minecraftlauncher.launcher.LauncherSettings;
+import javafx.animation.Transition;
+import javafx.beans.value.WritableValue;
+import javafx.util.Duration;
 
-public class SkinFragmentController extends FragmentController {
+public class SkinTransition extends Transition {
+    private Function<Double, Double> expression;
+    private List<WritableValue<Number>> observables;
+    private int count;
 
-    @FXML
-    private Pane mainPane;
+    public int getCount() {
+        return count;
+    }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        mainPane.getChildren().clear();
-        try {
-            SkinCanvas canvas = new SkinCanvas(LauncherSettings.playerUsername, 250, 200, true);
-            canvas.getAnimationPlayer().addSkinAnimation(
-//                new MagmaArmsAnimation(100, 500, 90, canvas));
-//                new WavingArmsAnimation(100, 500, 90, canvas));
-                    new RunningAnimation(100, 800, 30, canvas));
-            mainPane.getChildren().add(canvas);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @SafeVarargs
+    public SkinTransition(Duration duration, Function<Double, Double> expression, WritableValue<Number>... observables) {
+        setCycleDuration(duration);
+        this.expression = expression;
+        this.observables = Arrays.asList(observables);
     }
 
     @Override
-    public void onClose() {
+    protected void interpolate(double frac) {
+        if (frac == 0 || frac == 1) {
+            count++;
+        }
 
+        double val = expression.apply(frac);
+        observables.forEach(w -> w.setValue(val));
+    }
+
+    @Override
+    public void play() {
+        count = 0;
+        super.play();
     }
 }

@@ -24,7 +24,7 @@
  * SOFTWARE.
  */
 
-package me.minidigger.minecraftlauncer.renderer.model;
+package me.minidigger.minecraftlauncher.renderer.model;
 
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;

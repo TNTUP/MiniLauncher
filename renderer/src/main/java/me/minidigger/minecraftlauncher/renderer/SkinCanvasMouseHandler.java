@@ -24,15 +24,15 @@
  * SOFTWARE.
  */
 
-package me.minidigger.minecraftlauncer.renderer;
+package me.minidigger.minecraftlauncher.renderer;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 
-import static me.minidigger.minecraftlauncer.renderer.SkinData.scale;
-import static me.minidigger.minecraftlauncer.renderer.SkinData.xRotation;
-import static me.minidigger.minecraftlauncer.renderer.SkinData.yRotation;
-import static me.minidigger.minecraftlauncer.renderer.SkinData.zRotation;
+import static me.minidigger.minecraftlauncher.renderer.SkinData.scale;
+import static me.minidigger.minecraftlauncher.renderer.SkinData.xRotation;
+import static me.minidigger.minecraftlauncher.renderer.SkinData.yRotation;
+import static me.minidigger.minecraftlauncher.renderer.SkinData.zRotation;
 
 public class SkinCanvasMouseHandler {
 

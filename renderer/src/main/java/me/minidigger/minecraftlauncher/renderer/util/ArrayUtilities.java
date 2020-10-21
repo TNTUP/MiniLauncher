@@ -24,40 +24,33 @@
  * SOFTWARE.
  */
 
-package me.minidigger.minecraftlauncher.launcher.gui;
+package me.minidigger.minecraftlauncher.renderer.util;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+/**
+ * @author Mark Vainomaa
+ */
+public interface ArrayUtilities {
+    static int[] reverseIntArray(int[] input) {
+        int tmp, i = 0, j = input.length - 1;
 
-import javafx.fxml.FXML;
-import javafx.scene.layout.Pane;
-import me.minidigger.minecraftlauncher.renderer.SkinCanvas;
-import me.minidigger.minecraftlauncher.renderer.animation.animations.RunningAnimation;
-import me.minidigger.minecraftlauncher.launcher.LauncherSettings;
-
-public class SkinFragmentController extends FragmentController {
-
-    @FXML
-    private Pane mainPane;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        mainPane.getChildren().clear();
-        try {
-            SkinCanvas canvas = new SkinCanvas(LauncherSettings.playerUsername, 250, 200, true);
-            canvas.getAnimationPlayer().addSkinAnimation(
-//                new MagmaArmsAnimation(100, 500, 90, canvas));
-//                new WavingArmsAnimation(100, 500, 90, canvas));
-                    new RunningAnimation(100, 800, 30, canvas));
-            mainPane.getChildren().add(canvas);
-        } catch (IOException e) {
-            e.printStackTrace();
+        while (j > i) {
+            tmp = input[j];
+            input[j] = input[i];
+            input[i] = tmp;
+            j--;
+            i++;
         }
+
+        return input;
     }
 
-    @Override
-    public void onClose() {
+    static int[] mergeIntArrays(int[] a, int[] b) {
+        int totalLen = a.length + b.length;
+        int[] newArray = new int[totalLen];
 
+        System.arraycopy(a, 0, newArray, 0, a.length);
+        System.arraycopy(b, 0, newArray, a.length, b.length);
+
+        return newArray;
     }
 }

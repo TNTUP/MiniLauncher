@@ -24,40 +24,32 @@
  * SOFTWARE.
  */
 
-package me.minidigger.minecraftlauncher.launcher.gui;
+package me.minidigger.minecraftlauncher.renderer.animation.animations;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import javafx.fxml.FXML;
-import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import me.minidigger.minecraftlauncher.renderer.SkinCanvas;
-import me.minidigger.minecraftlauncher.renderer.animation.animations.RunningAnimation;
-import me.minidigger.minecraftlauncher.launcher.LauncherSettings;
+import me.minidigger.minecraftlauncher.renderer.SkinTransition;
+import me.minidigger.minecraftlauncher.renderer.animation.SkinAnimation;
+import me.minidigger.minecraftlauncher.renderer.util.FunctionHelper;
 
-public class SkinFragmentController extends FragmentController {
+import static me.minidigger.minecraftlauncher.renderer.SkinData.lArm;
+import static me.minidigger.minecraftlauncher.renderer.SkinData.rArm;
 
-    @FXML
-    private Pane mainPane;
+public final class MagmaArmsAnimation extends SkinAnimation {
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        mainPane.getChildren().clear();
-        try {
-            SkinCanvas canvas = new SkinCanvas(LauncherSettings.playerUsername, 250, 200, true);
-            canvas.getAnimationPlayer().addSkinAnimation(
-//                new MagmaArmsAnimation(100, 500, 90, canvas));
-//                new WavingArmsAnimation(100, 500, 90, canvas));
-                    new RunningAnimation(100, 800, 30, canvas));
-            mainPane.getChildren().add(canvas);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    public MagmaArmsAnimation(int weight, int time, double angle, SkinCanvas canvas) {
+        super(weight);
 
-    @Override
-    public void onClose() {
+        SkinTransition lArmTransition = new SkinTransition(Duration.millis(time), v -> v * angle,
+                lArm.getYRotate().angleProperty());
 
+        SkinTransition rArmTransition = new SkinTransition(Duration.millis(time), v -> v * -angle,
+                rArm.getYRotate().angleProperty());
+
+        FunctionHelper.alwaysB(SkinTransition::setAutoReverse, true, lArmTransition, rArmTransition);
+        FunctionHelper.alwaysB(SkinTransition::setCycleCount, 16, lArmTransition, rArmTransition);
+        FunctionHelper.always(transitions::add, lArmTransition, rArmTransition);
+
+        init();
     }
 }

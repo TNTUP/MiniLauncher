@@ -24,40 +24,48 @@
  * SOFTWARE.
  */
 
-package me.minidigger.minecraftlauncher.launcher.gui;
+package me.minidigger.minecraftlauncher.renderer.model;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.transform.Rotate;
 
-import javafx.fxml.FXML;
-import javafx.scene.layout.Pane;
-import me.minidigger.minecraftlauncher.renderer.SkinCanvas;
-import me.minidigger.minecraftlauncher.renderer.animation.animations.RunningAnimation;
-import me.minidigger.minecraftlauncher.launcher.LauncherSettings;
+public class SkinGroup extends Group {
 
-public class SkinFragmentController extends FragmentController {
+    protected Rotate xRotate, yRotate, zRotate;
 
-    @FXML
-    private Pane mainPane;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        mainPane.getChildren().clear();
-        try {
-            SkinCanvas canvas = new SkinCanvas(LauncherSettings.playerUsername, 250, 200, true);
-            canvas.getAnimationPlayer().addSkinAnimation(
-//                new MagmaArmsAnimation(100, 500, 90, canvas));
-//                new WavingArmsAnimation(100, 500, 90, canvas));
-                    new RunningAnimation(100, 800, 30, canvas));
-            mainPane.getChildren().add(canvas);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public SkinGroup(Rotate xRotate, Rotate yRotate, Rotate zRotate, Node... nodes) {
+        this.xRotate = xRotate;
+        this.yRotate = yRotate;
+        this.zRotate = zRotate;
+        Group group = new Group();
+        group.getChildren().addAll(nodes);
+        getChildren().add(addRotate(group, xRotate, yRotate, zRotate));
     }
 
-    @Override
-    public void onClose() {
+    protected Group addRotate(Group group, Rotate... rotates) {
+        for (Rotate rotate : rotates) {
+            group = addRotate(group, rotate);
+        }
+        return group;
+    }
 
+    protected Group addRotate(Group group, Rotate rotate) {
+        Group newGroup = new Group();
+        group.getTransforms().add(rotate);
+        newGroup.getChildren().add(group);
+        return newGroup;
+    }
+
+    public Rotate getXRotate() {
+        return xRotate;
+    }
+
+    public Rotate getYRotate() {
+        return yRotate;
+    }
+
+    public Rotate getZRotate() {
+        return zRotate;
     }
 }

@@ -24,7 +24,7 @@
  * SOFTWARE.
  */
 
-package me.minidigger.minecraftlauncer.renderer.util;
+package me.minidigger.minecraftlauncher.renderer.util;
 
 import java.util.Arrays;
 import java.util.function.BiConsumer;

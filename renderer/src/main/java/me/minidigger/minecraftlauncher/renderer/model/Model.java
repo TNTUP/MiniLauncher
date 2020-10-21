@@ -24,10 +24,10 @@
  * SOFTWARE.
  */
 
-package me.minidigger.minecraftlauncer.renderer.model;
+package me.minidigger.minecraftlauncher.renderer.model;
 
 import javafx.scene.shape.TriangleMesh;
-import me.minidigger.minecraftlauncer.renderer.util.ArrayUtilities;
+import me.minidigger.minecraftlauncher.renderer.util.ArrayUtilities;
 
 public class Model extends TriangleMesh {
 

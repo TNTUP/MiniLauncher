@@ -24,7 +24,7 @@
  * SOFTWARE.
  */
 
-package me.minidigger.minecraftlauncer.renderer.util;
+package me.minidigger.minecraftlauncher.renderer.util;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
